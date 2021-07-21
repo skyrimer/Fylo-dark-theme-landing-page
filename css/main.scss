@@ -26,35 +26,55 @@ h2,
 h4 {
   font-family: "Raleway", sans-serif; // headers
 }
+h2 {
+  font-size: 7vw;
+  @media screen and (min-width: 30rem) {
+    font-size: 2.8rem;
+  }
+  line-height: 150%;
+}
 .container-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: 100vh;
-  background-color: $main-background;
   color: $white;
-  & > * {
-    max-width: 100rem;
+  background-color: $main-background;
+  & > div {
+    margin: 0 2.5% 10em;
   }
 }
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 5em 0;
-  width: 95%;
+  width: clamp(17rem, 95%, 90rem);
+  margin: 3em 5%;
+  @media screen and (min-width: 40rem) {
+    margin: 5em 5%;
+  }
   .logo {
-    width: 30%;
+    width: 25%;
+    @media screen and (min-width: 25rem) {
+      width: 10rem;
+    }
     @media screen and (min-width: 35rem) {
       width: auto;
     }
   }
   nav.nav-links {
+    display: flex;
+    gap: 1em;
+    @media screen and (min-width: 25rem) {
+      gap: 2em;
+    }
+    @media screen and (min-width: 35rem) {
+      gap: 4em;
+    }
     a {
       font-size: 1.2rem;
       text-decoration: none;
-      margin: 0 2em;
       color: rgba($color: $white, $alpha: 0.8);
       transition: all 0.3s ease-in-out;
       &:hover {
@@ -68,39 +88,46 @@ header {
 
 .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  .top {
-    max-width: 60rem;
-    text-align: center;
-    img {
-      margin-bottom: 3em;
-    }
-    h2 {
-      font-size: 2.8rem;
-      line-height: 150%;
-      margin-bottom: 1em;
-    }
-    p {
-      font-size: 1.3rem;
-      margin-bottom: 2em;
-    }
+  flex-direction: column;
+  width: 100%;
+  background: $intro-background url("/images/bg-curvy-desktop.svg") bottom no-repeat;
+  background-size: contain;
+  @media screen and (min-width: 200rem) {
+    background-size: cover;
   }
-  .btn-link {
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: $white;
-    text-decoration: none;
-    padding: 1.2em 6em;
-    border-radius: 2em;
-    background: $blue;
-    transition: all 0.3s ease-in-out;
-    &:hover,
-    &:focus {
-      background: $cyan;
+
+}
+.top {
+  max-width: 60rem;
+  text-align: center;
+  img {
+    margin-bottom: 3em;
+  }
+  h2 {
+    margin-bottom: 1em;
+  }
+  p {
+    font-size: 4.5vw;
+    @media screen and (min-width: 30rem) {
+      font-size: 1.3rem;
     }
+    margin-bottom: 2em;
+  }
+}
+.btn-link {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: $white;
+  text-decoration: none;
+  padding: 1.2em 6em;
+  border-radius: 2em;
+  background: $blue;
+  transition: all 0.3s ease-in-out;
+  &:hover,
+  &:focus {
+    background: $cyan;
   }
 }
 img {
@@ -109,10 +136,11 @@ img {
 
 .cards-wrapper {
   max-width: 60rem;
-  margin: 10em 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 6em;
+  @media screen and (min-width: 40rem) {
+    grid-template-columns: 1fr 1fr;
+  }
   .card {
     text-align: center;
     img {
@@ -123,4 +151,127 @@ img {
       margin-bottom: 0.5em;
     }
   }
+}
+
+.col-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  max-width: 100rem;
+  @media screen and (min-width: 58rem) {
+    flex-direction: row;
+  }
+  gap: 3em;
+  & > * {
+    flex-basis: 100%;
+  }
+  .left img {
+    width: 100%;
+  }
+  .right {
+    h2 {
+      margin-bottom: 0.5em;
+      line-height: 130%;
+      @media screen and (min-width: 58rem) {
+        width: 50%;
+      }
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 0.7em;
+    }
+    .link-wrapper {
+      width: max-content;
+      display: flex;
+      gap: 0.4em;
+      padding: 0 0.2em 0.4em 0;
+      border-bottom: 1px solid $cyan;
+      transition: all 0.3s ease-in-out;
+      .link {
+        color: $cyan;
+        position: relative;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        border-color: $white;
+        .link {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.comment-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
+  max-width: 100rem;
+  &::after {
+    content: url("/images/bg-quotes.png");
+    position: absolute;
+    top: -2.5em;
+    left: 0;
+  }
+  .comment-card {
+    position: relative;
+    z-index: 3;
+    flex-basis: 100%;
+    max-width: 30rem;
+    @media screen and (min-width: 40rem) {
+      flex-basis: calc(50% - 4em);
+    }
+    @media screen and (min-width: 70rem) {
+      flex-basis: calc(33.3333% - 4em);
+    }
+    padding: 3em 2.5em 2.5em;
+    border-radius: 0.5em;
+    background-color: $testimonials-background;
+    box-shadow: 0 1em 0.8em rgba($color: $white, $alpha: 0.02),
+                1em 0 0.8em rgba($color: $white, $alpha: 0.02);
+    .text {
+      font-size: 1.2rem;
+      margin-bottom: 1.5em;
+    }
+    .comment-card-footer {
+      display: flex;
+      gap: 1em;
+      img {
+        width: 3em;
+        height: 3em;
+        border-radius: 50%;
+      }
+      .label {
+        p:first-child {
+          font-size: 1.1rem;
+          font-weight: bold;
+        }
+        p:last-child {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+.get-access {
+  background: $intro-background;
+  padding: 4em;
+  border-radius: 0.4em;
+  text-align: center;
+  box-shadow: 0.5em 0.5em 0.2em rgba($color: #000000, $alpha: 0.5);
+  transform: translateY(50%);
+  max-width: 60rem;
+}
+
+.footer-wrapper {
+  padding-top: 10em;
+  width: 100%;
+  margin-bottom: 0;
+  background: $footer-background;
 }
